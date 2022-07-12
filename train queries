@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+class occ
+{
+public:
+    int fc;
+    int lc;
+ 
+    occ()
+    {
+        fc = -1;
+        lc = -1;
+    }
+};
+ 
+void solve()
+{
+ 
+    ll n, k;
+    cin >> n >> k;
+    vector<ll> v;
+    for (int i = 0; i < n; i++)
+    {
+        ll inp;
+        cin >> inp;
+        v.push_back(inp);
+    }
+ 
+    vector<pair<ll, ll>> queries;
+    for (ll i = 0; i < k; i++)
+    {
+        ll a, b;
+        cin >> a >> b;
+        queries.push_back({a, b});
+    }
+ 
+    map<long long, occ> mp;
+ 
+    for (int i = 0; i < n; i++)
+    {
+        if (mp[v[i]].fc == -1)
+        {
+            mp[v[i]].fc = i;
+            mp[v[i]].lc = i;
+        }
+        else
+        {
+            mp[v[i]].lc = i;
+        }
+    }
+ 
+    for (int i = 0; i < k; i++)
+    {
+        ll src = queries[i].first;
+        ll des = queries[i].second;
+        if (mp[src].fc <= mp[des].lc && mp[src].fc != -1)
+        {
+            cout << "YES\n";
+        }
+        else
+        {
+            cout << "NO\n";
+        }
+    }
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    long long int t;
+    t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}
