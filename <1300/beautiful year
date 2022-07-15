@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+bool check(ll y, unordered_set<int> myset)
+{
+    while(y)
+    {
+        int r = y%10;
+        if(myset.find(r)!=myset.end())
+        return true;
+        
+        myset.insert(r);
+        y/=10;
+    }
+    return false;
+}
+ 
+int main()
+{
+    ll y;
+    cin >> y;
+    
+    ll temp = y;
+    unordered_set<int> myset;
+    
+    while(1)
+    {
+        y+=1;
+        bool flag = check(y,myset);
+        if(!flag)
+        break;
+ 
+    }
+    cout << y;
+    return 0;
+}
