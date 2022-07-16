@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+int main()
+{
+    ll p,t;
+    cin >> p >> t;
+    
+    if(t==1)
+    {
+        ll ans = (p*(p-1))/2;
+        cout << ans << " " << ans;
+    }
+    else
+    {
+        //for max
+        ll maxi = ((p-t+1)*(p-t))/2;
+        
+        //for min
+        ll other1 = p/t;
+        ll other2 = p%t;
+        
+        ll ans1 = (other1*(other1-1))/2;
+        ll ans2 = ((other1+1)*other1)/2;
+        ll ans3 = ans1*(t-other2) + ans2*(other2);
+        cout << ans3 << " " << maxi;
+    }
+    return 0;
+}
