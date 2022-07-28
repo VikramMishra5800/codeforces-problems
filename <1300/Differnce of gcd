@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+void solve()
+{
+    ll n,l,r;
+    cin >> n >> l >> r;
+    
+    vector<ll> ans;
+    ll count = 0;
+    
+    for(ll i = 1; i <= n; i++)
+    {
+        ll second_num = ((l-1)/i + 1)*i;
+        
+        if(second_num >= l && second_num <= r)
+        {
+            ans.push_back(second_num);
+            count++;
+        }
+        else
+            break;
+    }
+    if(count == n)
+    {   
+        cout << "YES" << endl;
+        for(auto &it: ans)
+        cout << it << " ";
+    }
+    else
+        cout << "NO";
+        
+    cout << endl;
+}
+
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        solve();
+    }
+    return 0;
+}
