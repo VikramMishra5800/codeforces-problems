@@ -1,0 +1,87 @@
+#include<bits/stdc++.h>
+#define ll long long
+
+using namespace std;
+
+int hr,mi;
+void convertToTime(string &s)
+{
+    hr = 0, mi=0;
+    bool flag = true;
+    for(auto &it: s)
+    {
+        if(it == ':')
+        {
+            flag = false;
+            continue;
+        }
+        if(flag)
+        hr = hr*10 + it - '0';
+        
+        else
+        mi = mi*10 + it - '0';
+    }
+}
+
+int ispalindrome(string &s)
+{
+    int left = 0;
+    int right = s.size()-1;
+    while(left < right)
+    {
+        if(s[left] != s[right])
+        return 0;
+        
+        left++;
+        right--;
+    }
+    return 1;
+}
+
+int addminute(int m)
+{
+    int t = 0;
+    int ans = 0;
+    while(1)
+    {
+        t+=m;
+        mi+=m;
+        hr+=mi/60;
+        hr%=24;
+        mi%=60;
+        string s="";
+        if(hr < 10)
+        s+='0';
+        s+=to_string(hr);
+        
+        if(mi < 10)
+        s+='0';
+        s+=to_string(mi);
+        ans+=ispalindrome(s);
+        if(t%1440 == 0)
+        break;
+    }
+    return ans;
+}
+
+void solve()
+{
+    string s;
+    int x;
+    cin >> s >> x;
+    
+    convertToTime(s);
+    int ans = addminute(x);
+    cout << ans << endl;
+}
+
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        solve();
+    }
+    return 0;
+}
