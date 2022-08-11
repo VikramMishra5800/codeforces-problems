@@ -1,0 +1,69 @@
+#include <iostream>
+#define ll long long
+using namespace std;
+void solve()
+{
+     ll n,m;
+	    cin >> n >> m;
+	    string s;
+	    cin >> s;
+	    
+	    string temp = s;
+	    
+	    ll sum = 0,total_sum=0;
+	    ll first_1 = -1,last_1 = -1;
+	   
+	    for(ll i = 0; i < n; i++)
+	    {
+	        if(s[i]=='1')
+	        {
+	            if(first_1==-1)
+	            first_1 = i;
+	            
+	            last_1 = i;
+	            sum++;
+	        }
+	        
+	    }
+	    total_sum = sum*m;
+	    if((total_sum&1))
+	    {
+	        cout << 0 << endl;
+	    }
+	    else if(total_sum==0)
+	    cout << n*m << endl;
+	    
+	    else
+	    {
+	        if((m&1)==0)
+	        cout << first_1 + n-last_1<<endl;
+	        
+	        else
+	        {
+	            ll s2= 0,i1 = -1,i2=-1;
+	            for(ll i = 0; i < n; i++)
+	            {
+	                if(s[i]=='1')
+	                {
+	                    s2++;
+	                    if(s2 == sum/2)
+                        i1 = i;
+                        else if(s2 == sum/2+1)
+                        i2 = i;
+	                }
+	                
+	            }
+	            cout << i2-i1 << endl;
+	        }
+	    }
+}
+int main() {
+	// your code goes here
+	ll t;
+	cin >> t;
+	while(t--)
+	{
+	   solve();
+	}
+	return 0;
+}
