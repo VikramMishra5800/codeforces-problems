@@ -26,18 +26,24 @@ void solve()
 	        
 	    }
 	    total_sum = sum*m;
+	    
+	    // if total sum is odd then print 0 since there would be no any good index
 	    if((total_sum&1))
 	    {
 	        cout << 0 << endl;
 	    }
+	    
+	    // if all the characters in given string is 0 then all indeces are good
 	    else if(total_sum==0)
 	    cout << n*m << endl;
 	    
 	    else
 	    {
+	    	// if m is even then add the (n-last_occurance of 1 in m/2th copy) and 1st occurance of 1 in m/2+1th copy
 	        if((m&1)==0)
 	        cout << first_1 + n-last_1<<endl;
 	        
+		// if m is odd calculte i1th character where sum = n/2 and i2th character where sum = n/2+1 and take there difference
 	        else
 	        {
 	            ll s2= 0,i1 = -1,i2=-1;
